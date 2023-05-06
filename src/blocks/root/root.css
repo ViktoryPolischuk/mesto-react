@@ -1,0 +1,15 @@
+.root {
+  background: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-family: 'Inter', sans-serif;
+  color: #FFFFFF;
+}
+
+@supports (font-variation-settings: normal) {
+  .root { font-family: 'Inter var', sans-serif;
+  }
+}

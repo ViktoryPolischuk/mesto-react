@@ -1,0 +1,13 @@
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__info {
+    max-width: 100%;
+  }
+}
