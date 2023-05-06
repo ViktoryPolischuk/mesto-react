@@ -7,7 +7,7 @@ function Card({_id, name, link, owner, likes, onClick}) {
 
   return(
     <div className="gallery-card">
-      <img className="gallery-card__image" alt="Фотография" src={link} onClick={handleClick}/>
+      <img className="gallery-card__image" alt={name} src={link} onClick={handleClick}/>
       <div className="gallery-card__caption">
         <p className="gallery-card__text">{name}</p>
         <div className="gallery-card__like">
