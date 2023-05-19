@@ -1,48 +1,33 @@
-import {useState, useEffect} from "react";
-import api from '../utils/Api';
+import { useContext} from "react";
 import Card from "./Card";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
-  const [userName, setUserName] = useState('');
-  const [userDescription, setUserDescription] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
-  const [cards, setCards] = useState([]);
-
-useEffect(() => {
-  Promise.all([
-    api.getUserInfo(),
-    api.getInitialCards()
-  ])
-    .then(([initialUserInfo, initialCards]) => {
-      setUserName(initialUserInfo.name);
-      setUserDescription(initialUserInfo.about);
-      setUserAvatar(initialUserInfo.avatar);
-      setCards(initialCards.reverse());
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}, [])
+function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onCardLike, onCardDelete}) {
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main>
       <section className="profile">
         <div className="profile__avatar">
-          <img className="profile__avatar-image" alt="Фото профиля" src={userAvatar}/>
+          <img className="profile__avatar-image" alt="Фото профиля" src={currentUser.avatar}/>
           <button className="profile__avatar-button" type="button" onClick={onEditAvatar}></button>
         </div>
         <div className="profile__info">
           <div className="profile__column">
-            <h1 className="profile__author">{userName}</h1>
+            <h1 className="profile__author">{currentUser.name}</h1>
             <button className="profile__edit-button" type="button" onClick={onEditProfile}></button>
           </div>
-          <p className="profile__description">{userDescription}</p>
+          <p className="profile__description">{currentUser.about}</p>
         </div>
         <button className="profile__add-button" type="button" onClick={onAddPlace}></button>
       </section>
       <section className="gallery" aria-label="Фотогалерея">
         {cards.map(card => (
-          <Card {...card} key={card._id} onClick={onCardClick} />
+          <Card {...card} key={card._id}
+          onClick={onCardClick}
+          onCardLike={onCardLike}
+          onCardDelete={onCardDelete}
+          />
         ))}
       </section>
     </main>
