@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function DeleteCardPopup({cardId, onClose, onCardDelete}) {
-  const [isLoading, setIsLoading] = useState(false);
-
+function DeleteCardPopup({cardId, isLoading, onClose, onCardDelete}) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setIsLoading(true);
-
-    onCardDelete(cardId).then(() => {
-      setIsLoading(false)
-    })
+    onCardDelete(cardId);
   }
 
   return (
@@ -22,7 +16,7 @@ function DeleteCardPopup({cardId, onClose, onCardDelete}) {
       isOpen={cardId}
       onClose={onClose}
       onSubmit={handleSubmit}
-       />
+    />
   )
 }
 

@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import PopupWithForm from './PopupWithForm';
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
-  const [isLoading, setIsLoading] = useState(false);
-
+function EditAvatarPopup({isOpen, isLoading, onClose, onUpdateAvatar}) {
   const avatarRef = useRef()
 
   useEffect(() => {
@@ -13,13 +11,9 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setIsLoading(true);
-
     onUpdateAvatar({
       avatar: avatarRef.current.value
-    }).then(() => {
-      setIsLoading(false)
-    })
+    });
   }
 
   return(

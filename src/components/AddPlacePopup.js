@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup({isOpen, onClose, onAddPlace}) {
-  const [isLoading, setIsLoading] = useState(false);
-
+function AddPlacePopup({isOpen, isLoading, onClose, onAddPlace}) {
   const titleRef = useRef();
   const sourceRef = useRef();
 
@@ -15,14 +13,10 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setIsLoading(true);
-
     onAddPlace({
       title: titleRef.current.value,
       source: sourceRef.current.value
-    }).then(() => {
-      setIsLoading(false)
-    })
+    });
   }
 
   return (
