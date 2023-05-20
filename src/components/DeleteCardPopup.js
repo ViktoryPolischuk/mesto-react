@@ -13,7 +13,7 @@ function DeleteCardPopup({cardId, isLoading, onClose, onCardDelete}) {
       name="delete-card"
       title="Вы уверены?"
       buttonTitle={isLoading ? 'Удаление...' : 'Да'}
-      isOpen={cardId}
+      isOpen={!!cardId}
       onClose={onClose}
       onSubmit={handleSubmit}
     />

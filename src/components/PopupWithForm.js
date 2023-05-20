@@ -8,12 +8,14 @@ function PopupWithForm({name, title, buttonTitle, children, isOpen, onClose, onS
       }
     }
 
-    document.addEventListener('keydown', handleEscClose);
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscClose);
+    }
 
     return () => {
       document.removeEventListener('keydown', handleEscClose);
     };
-  }, [onClose]);
+  }, [isOpen]);
 
   function handleMouseDown(evt) {
     if (evt.target.classList.contains('popup') ||
